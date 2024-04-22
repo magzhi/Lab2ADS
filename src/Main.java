@@ -1,5 +1,6 @@
 import Classes.MyArrayList;
 import Classes.MyLinkedList;
+import Classes.MyQueue;
 import Classes.MyStack;
 
 import java.util.ArrayList;
@@ -79,5 +80,20 @@ public class Main {
         System.out.println("Popped element: " + myStack.pop());
         System.out.println("Check stack emptiness: " + myStack.isEmpty());
         System.out.println("Check stack size: " + myStack.size());
+
+        MyQueue myQueue = new MyQueue();
+        System.out.println("Check queue emptiness: " + myQueue.isEmpty());
+        myQueue.enqueue(5);
+        myQueue.enqueue(4);
+        myQueue.enqueue(3);
+        myQueue.enqueue(2);
+        myQueue.enqueue(1);
+
+        System.out.println("Peeked element: " + myQueue.peek());
+        System.out.println("Dequeued element: " + myQueue.dequeue());
+        System.out.println("Peeked element: " + myQueue.peek());
+        System.out.println("Dequeued element: " + myQueue.dequeue());
+        System.out.println("Check queue emptiness: " + myQueue.isEmpty());
+        System.out.println("Check queue size: " + myQueue.size());
     }
 }
