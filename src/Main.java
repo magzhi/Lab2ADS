@@ -1,7 +1,9 @@
 import Classes.MyArrayList;
 import Classes.MyLinkedList;
+import Classes.MyStack;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -41,6 +43,7 @@ public class Main {
         myLinkedList.add(3);
         myLinkedList.add(2);
         myLinkedList.add(1);
+        new Stack<>();
 
         System.out.println("List pre sort");
         for (int i = 0; i < myLinkedList.Size(); i++) {
@@ -61,5 +64,20 @@ public class Main {
         myLinkedList.remove(2);
         System.out.println("Vaule of index 2 after remove: " + myLinkedList.get(2));
         System.out.println("Size of an list: " + myLinkedList.Size());
+
+        MyStack myStack = new MyStack<>();
+        System.out.println("Check stack emptiness: " + myStack.isEmpty());
+        myStack.push(5);
+        myStack.push(4);
+        myStack.push(3);
+        myStack.push(2);
+        myStack.push(1);
+
+        System.out.println("Peeked element: " + myStack.peek());
+        System.out.println("Popped element: " + myStack.pop());
+        System.out.println("Peeked element: " + myStack.peek());
+        System.out.println("Popped element: " + myStack.pop());
+        System.out.println("Check stack emptiness: " + myStack.isEmpty());
+        System.out.println("Check stack size: " + myStack.size());
     }
 }
