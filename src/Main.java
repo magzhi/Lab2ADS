@@ -1,7 +1,4 @@
-import Classes.MyArrayList;
-import Classes.MyLinkedList;
-import Classes.MyQueue;
-import Classes.MyStack;
+import Classes.*;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -95,5 +92,22 @@ public class Main {
         System.out.println("Dequeued element: " + myQueue.dequeue());
         System.out.println("Check queue emptiness: " + myQueue.isEmpty());
         System.out.println("Check queue size: " + myQueue.size());
+
+        MyMinHeap myMinHeap = new MyMinHeap<>();
+        System.out.println("Is the heap empty? " + myMinHeap.isEmpty());
+
+        // Insert elements
+        myMinHeap.insert(5);
+        myMinHeap.insert(10);
+        myMinHeap.insert(3);
+        myMinHeap.insert(7);
+        myMinHeap.insert(1);
+
+        System.out.println("Minimum element: " + myMinHeap.getMin());
+        System.out.println("Extracted element is: " + myMinHeap.extractMin());
+        System.out.println("Is the heap empty? " + myMinHeap.isEmpty());
+        System.out.println("Size of the heap: " + myMinHeap.size());
+        System.out.println("Minimum element: " + myMinHeap.getMin());
+        System.out.println("Extracted element is: " + myMinHeap.extractMin());
     }
 }
