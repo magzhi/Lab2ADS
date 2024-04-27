@@ -198,6 +198,7 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public Object[] toArray() {
+        // returns an arrayified version of the list back
         Object[] newArray = new Object[size];
         System.arraycopy(array, 0, newArray, 0, size);
         return newArray;
@@ -205,27 +206,32 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public void Clear() {
+        // deletes all in the array by subbing a new empty array for existing
         array = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
     @Override
     public int Size() {
+        // sends un-interactable size property back
         return size;
     }
 
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
+            // indexing iterator functionality
             private int currentIndex = 0;
 
             @Override
             public boolean hasNext() {
+                // checking if next even exists by checking if currentIndex will overflow
                 return currentIndex < size;
             }
 
             @Override
             public T next() {
+                // throwing out of bounds error in case of mis-input then return next element
                 if (!hasNext()) {
                     throw new IndexOutOfBoundsException("No more elements");
                 }
@@ -235,7 +241,9 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
     }
 
     private void ensureCapacity() {
+        // private method that checks if current array that is storing list has enough space
         if (size == array.length) {
+            // if not, then it proceeds to double the size by creating a new array and filling it back with the old one
             int newCapacity = array.length * 2;
             Object[] newArray = new Object[newCapacity];
             System.arraycopy(array, 0, newArray, 0, size);
