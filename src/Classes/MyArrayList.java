@@ -2,44 +2,83 @@ package Classes;
 import Interfaces.MyList;
 import java.util.Iterator;
 
+/**
+ * Public MyArrayList<T> class. It implements MyList<T> interface functionality and extends Comparable<T>
+ *     MyList interface is the minimum set of methods that were given for this assignment
+ *     Comparable is used to implement a sorting algorithm into this class.
+ *
+ * @param <T> an Object type of the created ArrayList.
+ */
 public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
-    // setting the initial capacity of each array that stores our list array, I made it 16 as multiple of power of 2 seemed right
+    /**
+     * 3 private data types included in each MyArrayList
+     *
+     * @DEFAULT_CAPACITY is the static setting of the initial capacity of each array that stores our list array,
+     *      I made it 16 as multiple of power of 2 seemed right for the performance
+     * @array an array that stores our list's array
+     *
+     * @size is the current size of the list array, not to be confused with the capacity
+     */
     private static final int DEFAULT_CAPACITY = 16;
-    // array that stores our list array
     private Object[] array;
-    // current size of the list array, not to be confused with the capacity
     private int size;
 
-    // constructor
+    /**
+     * Default generic constructor for MyArrayList
+     * creates an empty array with the preset capacity
+     * and sets the default size to be empty
+     */
     public MyArrayList() {
-        // creating array with our preset capacity
         array = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
+    /**
+     * This method first calls "ensureCapacity()" method to check if our array can fit another element,
+     * then it adds said element to the array
+     *
+     * @param item is the Object getting added to our array
+     *             it is a T as it can be anything and one preset Object type
+     */
     @Override
     public void add(T item) {
-        // checking if our array can fit element, then adding list element
         ensureCapacity();
         array[size++] = item;
     }
 
+    /**
+     * This method first ensures if the index is actually indexed within the array and exists,
+     * then it either throws an out-of-bounds error
+     * or it sets the Object at the index location
+     *
+     * @param index is the index of where we want to set the Object
+     * @param item is the Object getting set to our array
+     *             it is a T as it can be anything and one preset Object type
+     */
     @Override
     public void set(int index, T item) {
-        // throwing out of bounds error in case of mis-input then setting element
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index out of bounds");
         array[index] = item;
     }
 
+    /**
+     * This method first ensures if the index is actually indexed within the array and exists,
+     * then it either throws an out-of-bounds error
+     * or it then checks whether there is enough space in the current array
+     * then it shifts all elements that are after the index
+     * and only then it sets the Object at the index location
+     * and increases size by 1
+     *
+     * @param index is the index of where we want to set the Object
+     * @param item is the Object getting set to our array
+     *             it is a T as it can be anything and one preset Object type
+     */
     @Override
     public void add(int index, T item) {
-        // throwing out of bounds error in case of mis-input then adding element
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException("Index out of bounds");
-        // ensuring array can fit element
         ensureCapacity();
-        // shifting all elements that are after inserted one
         for (int i = size; i > index; i--) {
             array[i] = array[i - 1];
         }
@@ -47,21 +86,38 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
         size++;
     }
 
+    /**
+     * This method calls above "add()" method with just 0 index
+     *
+     * @param item is the Object getting set to our array
+     *             it is a T as it can be anything and one preset Object type
+     */
     @Override
     public void addFirst(T item) {
-        // calling add with just 0 index
         add(0, item);
     }
 
+    /**
+     * This method calls twice above "add()" method with just 'size' index, which puts it in the end of the array
+     *
+     * @param item is the Object getting set to our array
+     *             it is a T as it can be anything and one preset Object type
+     */
     @Override
     public void addLast(T item) {
-        // calling add with just size index, which will be last
         add(size, item);
     }
 
+    /**
+     * This method first ensures if the index is actually indexed within the array and exists,
+     * then it either throws an out-of-bounds error
+     * or returns the Object indexed at the location
+     *
+     * @param index the location queried to be found
+     * @return returns Object located at that index of the array
+     */
     @Override
     public T get(int index) {
-        // throwing out of bounds error in case of mis-input then return element
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index out of bounds");
         return (T) array[index];
@@ -69,10 +125,7 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public T getFirst() {
-        // throwing out of bounds error in case it is empty then return 0 element
-        if (size == 0)
-            throw new IndexOutOfBoundsException("List is empty");
-        return (T) array[0];
+        return get(0);
     }
 
     @Override
